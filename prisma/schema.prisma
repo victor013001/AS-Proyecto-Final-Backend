@@ -9,3 +9,28 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Usuario {
+  documento     String
+  tipoDocumento String
+  nombre        String?
+  cupo          Int?
+  creditos      Creditos[]
+
+  @@id([documento, tipoDocumento])
+}
+
+model Creditos {
+  idCredito    String  @id @default(cuid())
+  tipoCredito  String?
+  descripcion  String?
+  valorCredito Int?
+  numeroCuotas Int?
+  diaCorte     Int?
+  tasaInteres  Int?
+  estado       String  @default("activo")
+
+  usuario       Usuario @relation(fields: [documento, tipoDocumento], references: [documento, tipoDocumento])
+  documento     String
+  tipoDocumento String
+}
