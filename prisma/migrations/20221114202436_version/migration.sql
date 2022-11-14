@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Prestamos" ALTER COLUMN "tasaInteres" SET DATA TYPE DOUBLE PRECISION;

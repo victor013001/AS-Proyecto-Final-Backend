@@ -10,27 +10,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Usuario {
+model Usuarios {
   documento     String
   tipoDocumento String
   nombre        String?
   cupo          Int?
-  creditos      Creditos[]
+  prestamos      Prestamos[]
 
   @@id([documento, tipoDocumento])
 }
 
-model Creditos {
-  idCredito    String  @id @default(cuid())
-  tipoCredito  String?
+model Prestamos {
+  idPrestamo    String  @id @default(cuid())
+  tipoPrestamo  String?
   descripcion  String?
-  valorCredito Int?
+  valorPrestamo Int?
   numeroCuotas Int?
   diaCorte     Int?
-  tasaInteres  Int?
+  tasaInteres  Float?
   estado       String  @default("activo")
 
-  usuario       Usuario @relation(fields: [documento, tipoDocumento], references: [documento, tipoDocumento])
+  usuario       Usuarios @relation(fields: [documento, tipoDocumento], references: [documento, tipoDocumento])
   documento     String
   tipoDocumento String
 }
