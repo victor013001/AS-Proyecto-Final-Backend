@@ -26,9 +26,9 @@ function getUsuario() {
                     usuario,
                 })
             }
-        } catch {
+        } catch (error){
             res.status(500).json({
-                status: 'Error inesperado',
+                status: 'Error inesperado', error
             })
         }
     }
