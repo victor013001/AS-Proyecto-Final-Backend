@@ -8,7 +8,7 @@ usuarios.route('/usuario').get(getUsuario());
 
 function getUsuario() {
     return async (req, res) => {
-        try {
+      
             const { documento, tipoDocumento } = req.query;
 
             const usuario = await prisma.Usuarios.findUnique({
@@ -26,11 +26,8 @@ function getUsuario() {
                     usuario,
                 })
             }
-        } catch {
-            res.status(500).json({
-                status: 'Error inesperado',
-            })
-        }
+        
+        
     }
 };
 
